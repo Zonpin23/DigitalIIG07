@@ -18,10 +18,10 @@ NET "servo1"			LOC = "H1"	| IOSTANDARD = "LVCMOS33";
 
 ## Pmod Header JA
 #===== SPI =======
-NET "ss"			LOC = "B13"	| IOSTANDARD = "LVCMOS33";		
-NET "sck"			LOC = "F14"	| IOSTANDARD = "LVCMOS33";		
-NET "mosi"			LOC = "D17"	| IOSTANDARD = "LVCMOS33";		
-NET "miso"			LOC = "E17"	| IOSTANDARD = "LVCMOS33";		
+NET "mosi"			LOC = "B13"	| IOSTANDARD = "LVCMOS33";		
+NET "miso"			LOC = "F14"	| IOSTANDARD = "LVCMOS33";		
+NET "sck"			LOC = "D17"	| IOSTANDARD = "LVCMOS33";		
+NET "ss"			LOC = "E17"	| IOSTANDARD = "LVCMOS33";		
 
 # ==== GPIO ====
 NET "gpio_io<0>"	LOC = "V5"	| IOSTANDARD = "LVCMOS33";

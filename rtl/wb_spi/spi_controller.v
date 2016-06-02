@@ -24,7 +24,7 @@ module spi_controller #(parameter CLK_DIV = 4)(
     input miso,
     output mosi,
     output sck,
-	 output ss,
+    output ss,
     input start,
     input[15:0] data_in,
     output[15:0] data_out,

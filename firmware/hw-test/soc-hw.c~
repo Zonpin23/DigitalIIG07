@@ -1,4 +1,4 @@
-#include "soc-hw.h"
+	#include "soc-hw.h"
 
 
 servo_t  *servo0 = (servo_t *)  0x10000000;
@@ -136,7 +136,6 @@ void uart_putstr(char *str)
 		c++;
 	}
 }
-
 /*
 ***************************************************************************
  * GPIO Functions

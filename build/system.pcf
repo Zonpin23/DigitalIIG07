@@ -1,11 +1,11 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Wed Jun 01 16:28:34 2016
+// Written by: Map P.20131013 on Thu Jun 02 09:53:25 2016
 //! **************************************************************************
 
 SCHEMATIC START;
-COMP "sck" LOCATE = SITE "D17" LEVEL 1;
+COMP "sck" LOCATE = SITE "F14" LEVEL 1;
 COMP "rst" LOCATE = SITE "C12" LEVEL 1;
-COMP "ss" LOCATE = SITE "E17" LEVEL 1;
+COMP "ss" LOCATE = SITE "B13" LEVEL 1;
 COMP "gpio_io<0>" LOCATE = SITE "V5" LEVEL 1;
 COMP "gpio_io<1>" LOCATE = SITE "V6" LEVEL 1;
 COMP "gpio_io<2>" LOCATE = SITE "V7" LEVEL 1;
@@ -14,10 +14,10 @@ COMP "gpio_io<4>" LOCATE = SITE "U6" LEVEL 1;
 COMP "gpio_io<5>" LOCATE = SITE "U7" LEVEL 1;
 COMP "gpio_io<6>" LOCATE = SITE "T4" LEVEL 1;
 COMP "gpio_io<7>" LOCATE = SITE "T5" LEVEL 1;
-COMP "miso" LOCATE = SITE "F14" LEVEL 1;
+COMP "miso" LOCATE = SITE "E17" LEVEL 1;
 COMP "servo0" LOCATE = SITE "H4" LEVEL 1;
 COMP "servo1" LOCATE = SITE "H1" LEVEL 1;
-COMP "mosi" LOCATE = SITE "B13" LEVEL 1;
+COMP "mosi" LOCATE = SITE "D17" LEVEL 1;
 COMP "uart_txd" LOCATE = SITE "D4" LEVEL 1;
 COMP "clk" LOCATE = SITE "E3" LEVEL 1;
 COMP "uart_rxd" LOCATE = SITE "C4" LEVEL 1;

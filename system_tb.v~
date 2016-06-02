@@ -82,7 +82,7 @@ initial begin
 	#100 gpio_dir<=8'hf0;
 	#0 data <= 8'h0f;
 
-	#(tck*100000) $finish;
+	#(tck*4000000) $finish;
 end
 
 

@@ -349,6 +349,19 @@ int main()
 
 int main()
 {
+	
+	while(1){
+	unsigned int a = 20;
+	unsigned int b = 180;
+	int c = 0;
+	servo_set_T0(a);
+	servo_set_T1(a);
+	servo_set_D0(b);
+	servo_set_D1(c);	
+
+
+	}
+
 	uart_putstr("Bienvenido");
 	uart_putstr("\n\r");	
 	initRfidReader();

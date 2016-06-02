@@ -97,17 +97,17 @@ void initRfidReader()
 	//AntennaON
 	setBit( TxControlReg, 0x03 );
 	
-	//FINISH INIT 
+	//	FINISH INIT 
 }
 
 void loop()
 {
 	//Begin Testing
-	uart_putstr("                  Acerque La Tarjeta                   " );
+	uart_putstr("Iniciando prueba....");
 	uart_putstr("\n\r");
 	msleep(3000);
 	
-
+	uart_putstr("funciona");
 	//IS_CARD
 	//REQUEST
 
@@ -163,25 +163,19 @@ void loop()
 	}*/
 	
 	n = spi_read(FIFOLevelReg); //leer cantidad de datos
-	/*
+	
 	uart_putstr("la cantidad de datos en el primer ciclo,n a leer es:  ");
 	uart_putchar(n+48);
 	uart_putstr("\n\r");
 	uart_putstr("-------");
 	uart_putstr("\n\r");
-	*/
-	if(n==0){
-	uart_putstr("              No Hay Ninguna Tarjeta              ");
-	uart_putstr("\n\r");
-	servo_set_D0(0);
-	}
-	else{
+	
 	char i=0;
 	
 	while (i<n)
 	{
 		lec = spi_read(FIFODataReg);
-		//uart_putstr(" Dato leido en el primer ciclo de FIFO: ");
+		uart_putstr(" Dato leido en el primer ciclo de FIFO: ");
 		char firstDigit  = lec & 0x0f;
 		if (firstDigit <= 9) 
 			firstDigit=firstDigit+48;
@@ -194,9 +188,9 @@ void loop()
 		else
 			secondDigit=secondDigit+55;
 
-		//uart_putchar(secondDigit);
-		//uart_putchar(firstDigit);
-		//uart_putstr("\n\r");
+		uart_putchar(secondDigit);
+		uart_putchar(firstDigit);
+		uart_putstr("\n\r");
 		
 		i=i+1;
 	}
@@ -261,19 +255,19 @@ void loop()
 	}*/
 	
 	n = spi_read(FIFOLevelReg); //leer cantidad de datos
-	/*
+	
 	uart_putstr("la cantidad de datos n a leer es:  ");
 	uart_putchar(n+48);
 	uart_putstr("\n\r");
 	uart_putstr("-------");
 	uart_putstr("\n\r");	
-*/
+
 	i=0;
 	
 	while (i<n)
 	{
 		lec = spi_read(FIFODataReg);
-		//uart_putstr(" Dato leido en el primer ciclo de FIFO: ");
+		uart_putstr(" Dato leido en el primer ciclo de FIFO: ");
 		char firstDigit  = lec & 0x0f;
 		if (firstDigit <= 9) 
 			firstDigit=firstDigit+48;
@@ -286,14 +280,13 @@ void loop()
 		else
 			secondDigit=secondDigit+55;
 
-		//uart_putchar(secondDigit);
-		//uart_putchar(firstDigit);
-		//uart_putstr("\n\r");
+		uart_putchar(secondDigit);
+		uart_putchar(firstDigit);
+		uart_putstr("\n\r");
 		
 		i=i+1;
 	}
-
-			
+	
 	/*
 	Serial.print("la cantidad de datos n a leer es: ");
 	Serial.print(n, BIN); Serial.println("----");
@@ -307,90 +300,77 @@ void loop()
 	Serial.print("Bits validos");Serial.print(validBits, BIN);
 	Serial.println();
 	*/
-	uart_putstr("              Siga             ");
-			uart_putstr("\n\r");			
-			servo_set_D0(180);
-			msleep(5000);
-			servo_set_D0(0);
+}
 
+
+
+
+/*
+
+inline void writeint(uint32_t val)
+{
+	uint32_t i, digit;
+
+	for (i=0; i<8; i++) {
+		digit = (val & 0xf0000000) >> 28;
+		if (digit >= 0xA) 
+			uart_putchar0('A'+digit-10);
+		else
+			uart_putchar0('0'+digit);
+		val <<= 4;
 	}
 }
 
+char glob[] = "Global";
+
+volatile uint32_t *p;
+volatile uint8_t *p2;
+volatile char a,b;
+
+extern uint32_t tic_msec;
+
 int main()
 {
-	
-
-	uart_putstr("       Bienvenido         ");
-	uart_putstr("\n\r");	
+  while(1){
 	unsigned int a = 20;
 	unsigned int b = 180;
 	int c = 0;
 	servo_set_T0(a);
+	servo_set_T1(a);
+	servo_set_D0(b);
+	servo_set_D1(c);	
 
+
+	}
+}
+
+*/
+
+
+int main()
+{
+	uart_putstr("Bienvenido");
+	uart_putstr("\n\r");	
 	initRfidReader();
-	
-
+	uart_putstr("Presente la Tarjeta");
 	char n;	
-		
 	
-
 	while(1)
 	{
 		n=uart_getchar();
 		if(n=='s')
 		{
+			uart_putstr("Valid Command, begin loop");
+			uart_putstr("\n\r");
 			loop();
-/*
-			uart_putstr("Siga");
-			uart_putstr("\n\r");			
-			servo_set_D0(b);
-			msleep(5000);
-			servo_set_D0(c);
-*/			
 		}
 		else
 		{
-			uart_putstr("Ingreso Denegado");
-			uart_putstr("\n\r");		
-			servo_set_D0(c);
+			uart_putstr("Invalid command");
+			uart_putstr("\n\r");
 		}
 		
 	}
 	
 }
-
-
-//RFID restart command	
-    /*
-	char address=0x01;
-	char value  =0x0f;
-
-	char dataRead = spi_read(address);
-
-	//uart_putchar(dataRead);
-	
-	spi_write(address,value);
-	
-	dataRead = spi_read(address);
-	uart_putchar(dataRead+0x01);
-	
-	while (spi_read(address) & (1<<4)) {
-    // PCD still restarting - unlikely after waiting 50ms, but better safe than sorry.
-	}
-	dataRead = spi_read(address);
-	uart_putchar(dataRead+0x01);
-	*/
-	
-
-//SPI trial
-/* 
-	uint32_t dataToSend = 0xAACC;
-	
-	spi_write(dataToSend);
-	
-	char dataRead = spi_read();
-
-	uart_putchar(dataRead);
-*/
-
 

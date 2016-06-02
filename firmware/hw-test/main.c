@@ -103,7 +103,7 @@ void initRfidReader()
 void loop()
 {
 	//Begin Testing
-	uart_putstr("Iniciando prueba....");
+	uart_putstr("                  Acerque La Tarjeta                   " );
 	uart_putstr("\n\r");
 	msleep(3000);
 	
@@ -163,19 +163,25 @@ void loop()
 	}*/
 	
 	n = spi_read(FIFOLevelReg); //leer cantidad de datos
-	
+	/*
 	uart_putstr("la cantidad de datos en el primer ciclo,n a leer es:  ");
 	uart_putchar(n+48);
 	uart_putstr("\n\r");
 	uart_putstr("-------");
 	uart_putstr("\n\r");
-	
+	*/
+	if(n==0){
+	uart_putstr("              No Hay Ninguna Tarjeta              ");
+	uart_putstr("\n\r");
+	servo_set_D0(0);
+	}
+	else{
 	char i=0;
 	
 	while (i<n)
 	{
 		lec = spi_read(FIFODataReg);
-		uart_putstr(" Dato leido en el primer ciclo de FIFO: ");
+		//uart_putstr(" Dato leido en el primer ciclo de FIFO: ");
 		char firstDigit  = lec & 0x0f;
 		if (firstDigit <= 9) 
 			firstDigit=firstDigit+48;
@@ -188,9 +194,9 @@ void loop()
 		else
 			secondDigit=secondDigit+55;
 
-		uart_putchar(secondDigit);
-		uart_putchar(firstDigit);
-		uart_putstr("\n\r");
+		//uart_putchar(secondDigit);
+		//uart_putchar(firstDigit);
+		//uart_putstr("\n\r");
 		
 		i=i+1;
 	}
@@ -255,19 +261,19 @@ void loop()
 	}*/
 	
 	n = spi_read(FIFOLevelReg); //leer cantidad de datos
-	
+	/*
 	uart_putstr("la cantidad de datos n a leer es:  ");
 	uart_putchar(n+48);
 	uart_putstr("\n\r");
 	uart_putstr("-------");
 	uart_putstr("\n\r");	
-
+*/
 	i=0;
 	
 	while (i<n)
 	{
 		lec = spi_read(FIFODataReg);
-		uart_putstr(" Dato leido en el primer ciclo de FIFO: ");
+		//uart_putstr(" Dato leido en el primer ciclo de FIFO: ");
 		char firstDigit  = lec & 0x0f;
 		if (firstDigit <= 9) 
 			firstDigit=firstDigit+48;
@@ -280,13 +286,14 @@ void loop()
 		else
 			secondDigit=secondDigit+55;
 
-		uart_putchar(secondDigit);
-		uart_putchar(firstDigit);
-		uart_putstr("\n\r");
+		//uart_putchar(secondDigit);
+		//uart_putchar(firstDigit);
+		//uart_putstr("\n\r");
 		
 		i=i+1;
 	}
-	
+
+			
 	/*
 	Serial.print("la cantidad de datos n a leer es: ");
 	Serial.print(n, BIN); Serial.println("----");
@@ -300,27 +307,52 @@ void loop()
 	Serial.print("Bits validos");Serial.print(validBits, BIN);
 	Serial.println();
 	*/
+	uart_putstr("              Siga             ");
+			uart_putstr("\n\r");			
+			servo_set_D0(180);
+			msleep(5000);
+			servo_set_D0(0);
+
+	}
 }
 
 int main()
 {
 	
+
+	uart_putstr("       Bienvenido         s");
+	uart_putstr("\n\r");	
+	unsigned int a = 20;
+	unsigned int b = 180;
+	int c = 0;
+	servo_set_T0(a);
+
+	initRfidReader();
+	
+
 	char n;	
+		
+	
 
 	while(1)
 	{
-		initRfidReader();
 		n=uart_getchar();
 		if(n=='s')
 		{
-			uart_putstr("Valid Command, begin loop");
-			uart_putstr("\n\r");
 			loop();
+/*
+			uart_putstr("Siga");
+			uart_putstr("\n\r");			
+			servo_set_D0(b);
+			msleep(5000);
+			servo_set_D0(c);
+*/			
 		}
 		else
 		{
-			uart_putstr("Invalid command");
-			uart_putstr("\n\r");
+			uart_putstr("Ingreso Denegado");
+			uart_putstr("\n\r");		
+			servo_set_D0(c);
 		}
 		
 	}

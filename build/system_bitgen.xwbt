@@ -1,7 +1,7 @@
-INFILE=/home/zonpin23/Digital/SIEII/build/system-routed.ncd
-OUTFILE=/home/zonpin23/Digital/SIEII/build/system.bit
+INFILE=/home/zonpin23/Digital/Proyecto Final/build/system-routed.ncd
+OUTFILE=/home/zonpin23/Digital/Proyecto Final/build/system.bit
 FAMILY=Artix7
 PART=xc7a100t-3csg324
-WORKINGDIR=/home/zonpin23/Digital/SIEII/build
+WORKINGDIR=/home/zonpin23/Digital/Proyecto Final/build
 LICENSE=WebPack
 USER_INFO=210940339_0_0_471

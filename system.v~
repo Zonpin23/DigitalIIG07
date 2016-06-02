@@ -171,10 +171,10 @@ conbus #(
 	.s_addr_w(3),
 	.s0_addr(3'b000),	// bram     0x00000000 
 	.s1_addr(3'b001),	// servo    0x10000000 
-	.s2_addr(3'b010),	// spi     0x20000000 
+	.s2_addr(3'b010),	// gpio     0x20000000 
 	.s3_addr(3'b011),	// uart0    0x30000000 
 	.s4_addr(3'b100),	// timer    0x40000000 
-	.s5_addr(3'b101)	// gpio      0x50000000 
+	.s5_addr(3'b101)	// spi      0x50000000 
 
 
 
@@ -251,14 +251,14 @@ conbus #(
 	.s1_stb_o(  servo0_stb   ),
 	.s1_ack_i(  servo0_ack   ),
 	// Slave2
-	.s2_dat_i(  spi0_dat_r ),
-	.s2_dat_o(  spi0_dat_w ),
-	.s2_adr_o(  spi0_adr   ),
-	.s2_sel_o(  spi0_sel   ),
-	.s2_we_o(   spi0_we    ),
-	.s2_cyc_o(  spi0_cyc   ),
-	.s2_stb_o(  spi0_stb   ),
-	.s2_ack_i(  spi0_ack   ),
+	.s2_dat_i(  gpio0_dat_r ),
+	.s2_dat_o(  gpio0_dat_w ),
+	.s2_adr_o(  gpio0_adr   ),
+	.s2_sel_o(  gpio0_sel   ),
+	.s2_we_o(   gpio0_we    ),
+	.s2_cyc_o(  gpio0_cyc   ),
+	.s2_stb_o(  gpio0_stb   ),
+	.s2_ack_i(  gpio0_ack   ),
 	// Slave3
 	.s3_dat_i(  uart0_dat_r ),
 	.s3_dat_o(  uart0_dat_w ),
@@ -278,14 +278,16 @@ conbus #(
 	.s4_stb_o(  timer0_stb   ),
 	.s4_ack_i(  timer0_ack   ),
 	//Slave5
-	.s5_dat_i(  gpio0_dat_r ),
-	.s5_dat_o(  gpio0_dat_w ),
-	.s5_adr_o(  gpio0_adr   ),
-	.s5_sel_o(  gpio0_sel   ),
-	.s5_we_o(   gpio0_we    ),
-	.s5_cyc_o(  gpio0_cyc   ),
-	.s5_stb_o(  gpio0_stb   ),
-	.s5_ack_i(  gpio0_ack   )
+	.s5_dat_i(  spi0_dat_r ),
+	.s5_dat_o(  spi0_dat_w ),
+	.s5_adr_o(  spi0_adr   ),
+	.s5_sel_o(  spi0_sel   ),
+	.s5_we_o(   spi0_we    ),
+	.s5_cyc_o(  spi0_cyc   ),
+	.s5_stb_o(  spi0_stb   ),
+	.s5_ack_i(  spi0_ack   )
+
+
 );
 
 
